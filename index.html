@@ -17,7 +17,7 @@
     }
 
     .container {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(0, 0, 0, 0.7); /* Đổi màu nền */
       border: 2px double black;
       width: 30%;
       height: 60%; /* Kích thước nhỏ hơn */
@@ -53,24 +53,23 @@
       border-radius: 5px;
       transition: background-color 0.3s, color 0.3s;
       text-align: center;
+      background-color: rgba(0, 0, 0, 0.8); /* Đổi màu nền */
     }
 
     .menu-option:hover {
-      background-color: #f2f2f2;
+      background-color: #333; /* Đổi màu nền khi hover */
     }
 
     .menu-option.active {
-      background-color: #3498db;
+      background-color: #444; /* Đổi màu nền khi được chọn */
       color: white;
     }
 
-    /* Thêm thanh phân cách giữa cột */
     .column-divider {
       border-left: 1px solid black;
       height: 100%;
     }
 
-    /* Hiệu ứng hover và nhấn nút cho danh mục con */
     .submenu {
       display: none;
       flex-direction: column;
@@ -91,11 +90,11 @@
     }
 
     .submenu-option:hover {
-      background-color: #f2f2f2;
+      background-color: #333;
     }
 
     .submenu-option:active {
-      background-color: #3498db;
+      background-color: #444;
       color: white;
     }
   </style>
@@ -108,7 +107,7 @@
       option.addEventListener('click', () => {
         menuOptions.forEach((opt) => opt.classList.remove('active'));
         sections.forEach((section) => section.style.display = 'none');
-        
+
         option.classList.add('active');
         sections[index].style.display = 'block';
       });
