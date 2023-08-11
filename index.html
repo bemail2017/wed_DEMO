@@ -20,7 +20,7 @@
       background-color: rgba(255, 255, 255, 0.9);
       border: 2px double black;
       width: 30%;
-      height: 80%;
+      height: 60%; /* Kích thước nhỏ hơn */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -52,6 +52,7 @@
       padding: 8px;
       border-radius: 5px;
       transition: background-color 0.3s, color 0.3s;
+      text-align: center;
     }
 
     .menu-option:hover {
@@ -62,9 +63,45 @@
       background-color: #3498db;
       color: white;
     }
+
+    /* Thêm thanh phân cách giữa cột */
+    .column-divider {
+      border-left: 1px solid black;
+      height: 100%;
+    }
+
+    /* Hiệu ứng hover và nhấn nút cho danh mục con */
+    .submenu {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      padding-top: 10px;
+    }
+
+    .menu-option:hover .submenu {
+      display: flex;
+    }
+
+    .submenu-option {
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .submenu-option:hover {
+      background-color: #f2f2f2;
+    }
+
+    .submenu-option:active {
+      background-color: #3498db;
+      color: white;
+    }
   </style>
   <script>
     const menuOptions = document.querySelectorAll('.menu-option');
+    const submenuOptions = document.querySelectorAll('.submenu-option');
     const sections = document.querySelectorAll('.section');
 
     menuOptions.forEach((option, index) => {
@@ -76,34 +113,55 @@
         sections[index].style.display = 'block';
       });
     });
+
+    submenuOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        submenuOptions.forEach((opt) => opt.classList.remove('active'));
+        option.classList.add('active');
+      });
+    });
   </script>
 </head>
 <body>
   <div class="container">
     <div class="section">
       <div class="menu">
-        <div class="menu-option active">Lựa chọn a</div>
-        <div class="menu-option">Lựa chọn b</div>
-        <div class="menu-option">Lựa chọn c</div>
-        <div class="menu-option">Lựa chọn d</div>
-      </div>
-      <div class="menu">
-        <div class="menu-option">a1</div>
-        <div class="menu-option">b1</div>
-        <div class="menu-option">c1</div>
-        <div class="menu-option">d1</div>
-      </div>
-      <div class="menu">
-        <div class="menu-option">a2</div>
-        <div class="menu-option">b2</div>
-        <div class="menu-option">c2</div>
-        <div class="menu-option">d2</div>
+        <div class="menu-option active">Lựa chọn a
+          <div class="submenu">
+            <div class="submenu-option active">a1</div>
+            <div class="submenu-option">a2</div>
+            <!-- Thêm các danh mục con cho lựa chọn a -->
+          </div>
+        </div>
+        <div class="menu-option">Lựa chọn b
+          <div class="submenu">
+            <div class="submenu-option">b1</div>
+            <div class="submenu-option">b2</div>
+            <!-- Thêm các danh mục con cho lựa chọn b -->
+          </div>
+        </div>
+        <div class="menu-option">Lựa chọn c
+          <div class="submenu">
+            <div class="submenu-option">c1</div>
+            <div class="submenu-option">c2</div>
+            <!-- Thêm các danh mục con cho lựa chọn c -->
+          </div>
+        </div>
+        <div class="menu-option">Lựa chọn d
+          <div class="submenu">
+            <div class="submenu-option">d1</div>
+            <div class="submenu-option">d2</div>
+            <!-- Thêm các danh mục con cho lựa chọn d -->
+          </div>
+        </div>
       </div>
       <!-- Thêm các dòng cho các lựa chọn khác ở đây -->
     </div>
+    <div class="column-divider"></div> <!-- Thanh phân cách cột -->
     <div class="section">
       <!-- Nội dung khu thứ hai -->
     </div>
+    <div class="column-divider"></div> <!-- Thanh phân cách cột -->
     <div class="section">
       <!-- Nội dung khu thứ ba -->
     </div>
