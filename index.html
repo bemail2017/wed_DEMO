@@ -19,145 +19,75 @@
     .container {
       background-color: rgba(255, 255, 255, 0.9);
       border: 2px double black;
-      width: 30%;
+      width: 60%; /* Kích thước lớn hơn */
       height: 60%; /* Kích thước nhỏ hơn */
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     }
 
-    .section {
-      border: 2px double black;
-      padding: 10px;
-      width: 100%;
-      text-align: center;
-      margin-bottom: 10px;
-      border-radius: 10px;
-    }
-
-    .menu {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-top: 1px solid black;
-    }
-
-    .menu-option {
+    .column {
       flex: 1;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-      text-align: center;
+      border-right: 1px solid black; /* Thêm đường kẻ phân cách cột */
+      padding: 10px;
     }
 
-    .menu-option.active {
-      background-color: #d3d3d3; /* Đổi màu nền khi được chọn */
-      color: black;
+    /* Điều chỉnh style cho nội dung trong cột */
+    .column h2 {
+      margin: 0 0 10px;
+      padding: 0;
+      font-size: 18px;
     }
 
-    .column-divider {
-      border-left: 1px solid black;
-      height: 100%;
+    .column ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .submenu {
-      display: none;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-      padding-top: 10px;
-    }
-
-    .menu-option.active .submenu {
-      display: flex;
-    }
-
-    .submenu-option {
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .submenu-option:hover {
-      background-color: #e0e0e0;
-    }
-
-    .submenu-option:active {
-      background-color: #d3d3d3;
-      color: black;
+    .column li {
+      margin-bottom: 5px;
     }
   </style>
-  <script>
-    const menuOptions = document.querySelectorAll('.menu-option');
-    const submenuOptions = document.querySelectorAll('.submenu-option');
-    const sections = document.querySelectorAll('.section');
-
-    menuOptions.forEach((option, index) => {
-      option.addEventListener('click', () => {
-        menuOptions.forEach((opt) => opt.classList.remove('active'));
-        sections.forEach((section) => section.style.display = 'none');
-
-        option.classList.add('active');
-        sections[index].style.display = 'block';
-      });
-    });
-
-    submenuOptions.forEach((option) => {
-      option.addEventListener('click', () => {
-        submenuOptions.forEach((opt) => opt.classList.remove('active'));
-        option.classList.add('active');
-      });
-    });
-  </script>
 </head>
 <body>
   <div class="container">
-    <div class="section">
-      <div class="menu">
-        <div class="menu-option active">Lựa chọn a
-          <div class="submenu">
-            <div class="submenu-option active">a1</div>
-            <div class="submenu-option">a2</div>
-            <!-- Thêm các danh mục con cho lựa chọn a -->
-          </div>
-        </div>
-        <div class="menu-option">Lựa chọn b
-          <div class="submenu">
-            <div class="submenu-option">b1</div>
-            <div class="submenu-option">b2</div>
-            <!-- Thêm các danh mục con cho lựa chọn b -->
-          </div>
-        </div>
-        <div class="menu-option">Lựa chọn c
-          <div class="submenu">
-            <div class="submenu-option">c1</div>
-            <div class="submenu-option">c2</div>
-            <!-- Thêm các danh mục con cho lựa chọn c -->
-          </div>
-        </div>
-        <div class="menu-option">Lựa chọn d
-          <div class="submenu">
-            <div class="submenu-option">d1</div>
-            <div class="submenu-option">d2</div>
-            <!-- Thêm các danh mục con cho lựa chọn d -->
-          </div>
-        </div>
-      </div>
-      <!-- Thêm các dòng cho các lựa chọn khác ở đây -->
+    <div class="column">
+      <h2>Lựa chọn a</h2>
+      <ul>
+        <li>a1</li>
+        <li>a2</li>
+        <li>a3</li>
+        <!-- Thêm các lựa chọn khác -->
+      </ul>
     </div>
-    <div class="column-divider"></div> <!-- Thanh phân cách cột -->
-    <div class="section">
-      <!-- Nội dung khu thứ hai -->
+    <div class="column">
+      <h2>Lựa chọn b</h2>
+      <ul>
+        <li>b1</li>
+        <li>b2</li>
+        <li>b3</li>
+        <!-- Thêm các lựa chọn khác -->
+      </ul>
     </div>
-    <div class="column-divider"></div> <!-- Thanh phân cách cột -->
-    <div class="section">
-      <!-- Nội dung khu thứ ba -->
+    <div class="column">
+      <h2>Lựa chọn c</h2>
+      <ul>
+        <li>c1</li>
+        <li>c2</li>
+        <li>c3</li>
+        <!-- Thêm các lựa chọn khác -->
+      </ul>
+    </div>
+    <div class="column">
+      <h2>Lựa chọn d</h2>
+      <ul>
+        <li>d1</li>
+        <li>d2</li>
+        <li>d3</li>
+        <!-- Thêm các lựa chọn khác -->
+      </ul>
     </div>
   </div>
 </body>
