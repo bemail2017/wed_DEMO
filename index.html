@@ -1,142 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-image: url('https://i.imgur.com/lxGO2oB.gif');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container {
-      background-color: rgba(255, 255, 255, 0.8);
-      border: 2px double black;
-      width: 30%;
-      height: 80%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    .section {
-      border: 2px double black;
-      padding: 10px;
-      width: 100%;
-      text-align: center;
-      margin-bottom: 10px;
-      border-radius: 10px;
-    }
-
-    /* Hình ở khu vực 1 */
-    .logo-section {
-      background-color: #3498db;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      border-radius: 10px 10px 0 0;
-    }
-
-    .logo {
-      font-size: 14px;
-      background-color: black;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    /* Khu vực Faucet */
-    .faucet-section {
-      text-align: center;
-    }
-
-    .faucet-box {
-      border: 2px solid #3498db;
-      padding: 10px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-
-    .faucet-box h3 {
-      margin-top: 0;
-    }
-
-    .address-input {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .request-button {
-      background-color: #3498db;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    /* Geth Faucet */
-    .geth-faucet {
-      font-style: italic;
-      color: #666;
-    }
-  </style>
+    <title>Geth Faucet</title>
 </head>
 <body>
-  <div class="container">
-    <div class="logo-section">
-      <div class="logo">
-        <img src="https://i.imgur.com/jbsbrSV.png" alt="Logo" style="max-width: 100%; height: auto;">
-      </div>
-    </div>
-    <div class="section faucet-section">
-      <!-- Nội dung khu vực Faucet -->
-      <div class="faucet-box">
-        <h3>Yêu cầu Gas</h3>
-        <form id="gas-form">
-          <input class="address-input" type="text" name="user_address" placeholder="Dán địa chỉ ví Ethereum">
-          <button class="request-button" type="submit">Yêu cầu Gas</button>
-        </form>
-      </div>
-      <div class="geth-faucet">Geth Faucet</div>
-    </div>
-    <div class="section">
-      <!-- Khu vực thứ ba để trống -->
-    </div>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const form = document.querySelector("#gas-form");
-      const addressInput = document.querySelector(".address-input");
+    <h1>Yêu cầu Gas</h1>
+    <form id="gas-form">
+        <input type="text" id="user_address" placeholder="Dán địa chỉ ví Ethereum">
+        <button type="button" id="request-button">Yêu cầu Gas</button>
+    </form>
+    <div id="result"></div>
 
-      form.addEventListener("submit", async function(event) {
-        event.preventDefault();
+    <script>
+        const requestButton = document.getElementById('request-button');
+        const userAddressInput = document.getElementById('user_address');
+        const resultDiv = document.getElementById('result');
 
-        const userAddress = addressInput.value;
-        const response = await fetch(`http://42.96.2.200:5000/request_gas`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ user_address: userAddress })
+        requestButton.addEventListener('click', async () => {
+            const userAddress = userAddressInput.value;
+            const response = await fetch('http://42.96.2.200:5000/request_gas', { // Cập nhật đường dẫn API tại đây
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_address: userAddress })
+            });
+
+            const result = await response.json();
+            resultDiv.textContent = result.message + ' - Transaction: ' + result.transaction;
         });
-
-        const result = await response.text();
-        alert(result);
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
