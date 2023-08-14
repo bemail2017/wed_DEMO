@@ -105,8 +105,10 @@
       <!-- Nội dung khu vực Faucet -->
       <div class="faucet-box">
         <h3>Yêu cầu Gas</h3>
-        <input class="address-input" type="text" placeholder="Dán địa chỉ ví Ethereum">
-        <button class="request-button">Yêu cầu Gas</button>
+        <form id="gas-form">
+          <input class="address-input" type="text" name="user_address" placeholder="Dán địa chỉ ví Ethereum">
+          <button class="request-button" type="submit">Yêu cầu Gas</button>
+        </form>
       </div>
       <div class="geth-faucet">Geth Faucet</div>
     </div>
@@ -114,5 +116,27 @@
       <!-- Khu vực thứ ba để trống -->
     </div>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.querySelector("#gas-form");
+      const addressInput = document.querySelector(".address-input");
+
+      form.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const userAddress = addressInput.value;
+        const response = await fetch(`http://42.96.2.200:31567/request_gas`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ user_address: userAddress })
+        });
+
+        const result = await response.text();
+        alert(result);
+      });
+    });
+  </script>
 </body>
 </html>
