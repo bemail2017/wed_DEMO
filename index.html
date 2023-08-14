@@ -125,7 +125,7 @@
         event.preventDefault();
 
         const userAddress = addressInput.value;
-        const response = await fetch(`http://42.96.2.200:31567/request_gas`, {
+        const response = await fetch(`http://42.96.2.200:5000/request_gas`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
