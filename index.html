@@ -13,21 +13,19 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      font-family: Arial, sans-serif;
     }
 
     .container {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.8);
       border: 2px double black;
-      width: 40%; /* Kích thước nhỏ hơn */
-      height: 70%; /* Kích thước nhỏ hơn */
+      width: 30%;
+      height: 80%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     }
 
     .section {
@@ -39,130 +37,83 @@
       border-radius: 10px;
     }
 
-    .menu {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-top: 1px solid black;
-    }
-
-    .menu-option {
-      flex: 1;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .menu-option:hover {
-      background-color: #f2f2f2;
-    }
-
-    .menu-option.active {
+    /* Hình ở khu vực 1 */
+    .logo-section {
       background-color: #3498db;
       color: white;
-    }
-
-    /* Thêm thanh phân cách giữa cột */
-    .column-divider {
-      border-left: 1px solid black;
-      height: 100%;
-    }
-
-    /* Thiết kế màn hình TV */
-    .tv-screen-container {
-      width: 100%;
-      height: 60%; /* Kích thước nhỏ hơn */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .tv-screen {
-      width: 90%;
-      height: 80%;
-      background-color: white; /* Màu xám trắng */
-      border: 10px solid black;
-      border-radius: 10px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: space-between;
+      text-align: center;
       padding: 10px;
-      border-top: 1px solid black;
+      border-radius: 10px 10px 0 0;
     }
 
-    .tv-button {
-      flex: 1;
-      cursor: pointer;
+    .logo {
+      font-size: 14px;
+    }
+
+    /* Khu vực Faucet */
+    .faucet-section {
+      text-align: center;
+    }
+
+    .faucet-box {
+      border: 2px solid #3498db;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .faucet-box h3 {
+      margin-top: 0;
+    }
+
+    .address-input {
+      width: 100%;
       padding: 8px;
+      border: 1px solid #ccc;
       border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
     }
 
-    .tv-button:hover {
-      background-color: #f2f2f2;
-    }
-
-    .tv-button.active {
+    .request-button {
       background-color: #3498db;
       color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Geth Faucet */
+    .geth-faucet {
+      font-style: italic;
+      color: #666;
     }
   </style>
-  <script>
-    const menuOptions = document.querySelectorAll('.menu-option');
-    const sections = document.querySelectorAll('.section');
-
-    menuOptions.forEach((option, index) => {
-      option.addEventListener('click', () => {
-        menuOptions.forEach((opt) => opt.classList.remove('active'));
-        sections.forEach((section) => section.style.display = 'none');
-        
-        option.classList.add('active');
-        sections[index].style.display = 'block';
-      });
-    });
-  </script>
 </head>
 <body>
   <div class="container">
-    <div class="section">
-      <div class="menu">
-        <div class="menu-option active">Lựa chọn a</div>
-        <div class="menu-option">Lựa chọn b</div>
-        <div class="menu-option">Lựa chọn c</div>
-        <div class="menu-option">Lựa chọn d</div>
-      </div>
-      <div class="menu">
-        <div class="menu-option">a1</div>
-        <div class="menu-option">b1</div>
-        <div class="menu-option">c1</div>
-        <div class="menu-option">d1</div>
-      </div>
-      <div class="menu">
-        <div class="menu-option">a2</div>
-        <div class="menu-option">b2</div>
-        <div class="menu-option">c2</div>
-        <div class="menu-option">d2</div>
-      </div>
-      <!-- Thêm các dòng cho các lựa chọn khác ở đây -->
-    </div>
-    <div class="column-divider"></div> <!-- Thanh phân cách cột -->
-    <div class="section">
-      <div class="tv-screen-container">
-        <div class="tv-screen"></div> <!-- Màn hình TV -->
-        <div class="buttons">
-          <div class="tv-button active">Nút 1</div>
-          <div class="tv-button">Nút 2</div>
-          <div class="tv-button">Nút 3</div>
-          <div class="tv-button">Nút 4</div>
-        </div>
+    <div class="logo-section">
+      <div class="logo">
+        .---------.<br>
+        |.-------.|<br>
+        ||>run#  ||<br>
+        ||       ||<br>
+        |"-------'|<br>
+      .-^---------^-.<br>
+      |Görli Testnet|<br>
+      "-------------'<br>
       </div>
     </div>
-    <div class="column-divider"></div> <!-- Thanh phân cách cột -->
+    <div class="section faucet-section">
+      <!-- Nội dung khu vực Faucet -->
+      <div class="faucet-box">
+        <h3>Yêu cầu Gas</h3>
+        <input class="address-input" type="text" placeholder="Dán địa chỉ ví Ethereum">
+        <button class="request-button">Yêu cầu Gas</button>
+      </div>
+      <div class="geth-faucet">Geth Faucet</div>
+    </div>
     <div class="section">
-      <!-- Nội dung khu thứ ba -->
+      <!-- Nội dung khu vực thứ ba -->
     </div>
   </div>
 </body>
