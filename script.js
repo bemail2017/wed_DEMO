@@ -2,7 +2,7 @@ function requestFunds() {
     const address = document.getElementById('address').value;
     const gas = document.getElementById('gas').value;
     
-    fetch('http://bemail2017.github.io/wed_DEMO:5000/faucet', {
+    fetch('https://github.com/bemail2017/wed_DEMO/actions:5000/faucet', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
