@@ -1,34 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Geth Faucet</title>
+    <title>Ethereum Testnet Faucet</title>
 </head>
 <body>
-    <h1>Yêu cầu Gas</h1>
-    <form id="gas-form">
-        <input type="text" id="user_address" placeholder="Dán địa chỉ ví Ethereum">
-        <button type="button" id="request-button">Yêu cầu Gas</button>
+    <h1>Ethereum Testnet Faucet</h1>
+    <form id="faucetForm">
+        <label for="address">Địa chỉ ví Ethereum:</label>
+        <input type="text" id="address" name="address" required>
+        <label for="gas">Số lượng gas:</label>
+        <input type="text" id="gas" name="gas" required>
+        <button type="button" onclick="requestFunds()">Nhận Ether</button>
+        <p id="result"></p>
     </form>
-    <div id="result"></div>
-
-    <script>
-        const requestButton = document.getElementById('request-button');
-        const userAddressInput = document.getElementById('user_address');
-        const resultDiv = document.getElementById('result');
-
-        requestButton.addEventListener('click', async () => {
-            const userAddress = userAddressInput.value;
-            const response = await fetch('http://42.96.2.200:5000/request_gas', { // Cập nhật đường dẫn API tại đây
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ user_address: userAddress })
-            });
-
-            const result = await response.json();
-            resultDiv.textContent = result.message + ' - Transaction: ' + result.transaction;
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
