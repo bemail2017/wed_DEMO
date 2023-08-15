@@ -1,45 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Gas Faucet Demo</title>
-</head>
-<body>
-    <h1>Gas Faucet Demo</h1>
-    <p>Request gas for testing on Goerli Testnet:</p>
-    <form id="faucetForm">
-        <label for="address">Your Goerli Testnet Address:</label><br>
-        <input type="text" id="address" name="address" required><br>
-        <input type="submit" value="Request Gas">
-    </form>
+<script>
+    const faucetForm = document.getElementById("faucetForm");
+    const responseMessage = document.getElementById("responseMessage");
 
-    <p id="responseMessage"></p>
+    faucetForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-    <script>
-        const faucetForm = document.getElementById("faucetForm");
-        const responseMessage = document.getElementById("responseMessage");
+        const formData = new FormData(faucetForm);
+        const address = formData.get("address");
 
-        faucetForm.addEventListener("submit", async function (event) {
-            event.preventDefault();
-
-            const formData = new FormData(faucetForm);
-            const address = formData.get("address");
-
-            const response = await fetch("http://42.96.2.200:5000/faucet", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ "address": address }),
-            });
-
-            const data = await response.json();
-
-            if (data.txHash) {
-                responseMessage.textContent = `Gas sent. Transaction hash: ${data.txHash}`;
-            } else if (data.error) {
-                responseMessage.textContent = `Error: ${data.error}`;
-            }
+        const response = await fetch("http://42.96.2.200:5000/faucet", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ "address": address }),
         });
-    </script>
-</body>
-</html>
+
+        const data = await response.json();
+
+        if (data.txHash) {
+            responseMessage.textContent = `Gas sent. Transaction hash: ${data.txHash}`;
+        } else if (data.error) {
+            responseMessage.textContent = `Error: ${data.error}`;
+        }
+    });
+</script>
